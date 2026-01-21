@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Redirect everything to public/
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# Protect sensitive files (Apache 2.4+)
+<FilesMatch "\.(env|log|ini|sql)$">
+    Require all denied
+</FilesMatch>
